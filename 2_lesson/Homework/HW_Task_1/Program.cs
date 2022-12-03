@@ -15,4 +15,4 @@ string TwoSecond(int num)
 
 Console.WriteLine("Введите число ");
 int number = int.Parse(Console.ReadLine());
-Console.WriteLine(TwoSecond(number));
+Console.WriteLine(TwoSecond(number)); 
