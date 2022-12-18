@@ -1,2 +1,56 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+
+void Print(int[,] arr)
+{
+    int row_size = arr.GetLength(0);
+    int column_size = arr.GetLength(1);
+
+    for (int i = 0; i < row_size; i++)
+    {
+        for (int j = 0; j < column_size; j++)
+            Console.Write($" {arr[i, j],4} ");
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+
+}
+
+int[,] MassNums(int row, int column, int from, int to)
+{
+    int[,] arr = new int[row, column];
+
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < column; j++)
+            arr[i, j] = new Random().Next(from, to);
+
+    return arr;
+}
+
+void Composition(int[,] arr1, int[,] arr2, int[,] arr3)
+{
+    for (int i = 0; i < arr1.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr1.GetLength(1); j++)
+        {
+            for (int z = 0; z < arr1.GetLength(0); z++)
+            {
+                arr3[i, j] = arr3[i, j] + (arr1[i, z] * arr2[z, j]);
+            }
+        }
+    }
+}
+
+Console.Write("Введите размер массива: ");
+int size = int.Parse(Console.ReadLine());
+
+int[,] arr_1 = MassNums(size, size,
+                        int.Parse(Console.ReadLine()),
+                        int.Parse(Console.ReadLine()));
+int[,] arr_2 = MassNums(size, size,
+                        int.Parse(Console.ReadLine()),
+                        int.Parse(Console.ReadLine()));
+int[,] arr_3 = new int[size, size];                        
+Print(arr_1);
+Print(arr_2);
+Composition(arr_1, arr_2, arr_3);
+Print(arr_3);
